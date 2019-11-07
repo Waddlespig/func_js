@@ -61,3 +61,12 @@ function forOf_object(...args) {
 function set_deWeight(...args) {
   return Array.from(new Set([].concat(...args)));
 }
+
+/*
+* 获取多个数组内不相同的元素
+* */
+function get_diff(...args) {
+  return [].concat(...args).filter((v, index, arr) => {
+    return arr.indexOf(v) === arr.lastIndexOf(v);
+  })
+}
