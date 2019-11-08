@@ -1,39 +1,37 @@
 /*
 * 数据类型判断
 * */
-function dateType(v) {
+function dataType(v) {
   let type = ['null', 'undefined', 'number', 'string', 'boolean', 'array', 'object', 'function'];
-  if (v) {
-    if (typeof v === 'object') {
-      switch (Object.prototype.toString.call(v)) {
-        case '[object Array]':
-          return type[5];
-          break;
-        case '[object Object]':
-          return type[6];
-          break;
-        case '[object Function]':
-          return type[7];
-          break;
-        default:
-          break;
-      }
-    } else {
-      if (typeof v === 'number') {
-        return type[2];
-      } else if (typeof v === 'string') {
-        return type[3];
-      } else if (typeof v === 'boolean') {
-        return type[4];
-      }
-    }
-  } else {
-    if (typeof v === 'null') {
-      return type[0];
-    } else if (typeof v === 'undefined') {
-      return type[1];
-    }
+  let object_toString = Object.prototype.toString.call(v);
+  let dataType_name = '';
+  switch (object_toString) {
+    case '[object Null]':
+      dataType_name = type[0];
+      break;
+    case '[object Undefined]':
+      dataType_name = type[1];
+      break;
+    case '[object Number]':
+      dataType_name = type[2];
+      break;
+    case '[object String]':
+      dataType_name = type[3];
+      break;
+    case '[object Boolean]':
+      dataType_name = type[4];
+      break;
+    case '[object Array]':
+      dataType_name = type[5];
+      break;
+    case '[object Object]':
+      dataType_name = type[6];
+      break;
+    case '[object Function]':
+      dataType_name = type[7];
+      break;
   }
+  return dataType_name;
 }
 
 /*
@@ -68,5 +66,18 @@ function set_deWeight(...args) {
 function get_diff(...args) {
   return [].concat(...args).filter((v, index, arr) => {
     return arr.indexOf(v) === arr.lastIndexOf(v);
+  })
+}
+
+/*
+* 二维数组排序
+* */
+function get_diff_twoDimension(standard, ...args) {
+  if (typeof standard !== 'string' || typeof standard !== 'number') {
+    console.error('parameter: standard, not string or number');
+    return false;
+  }
+  return [].concat(...args).sort((x, y) => {
+    return x[standard] - y[standard];
   })
 }
