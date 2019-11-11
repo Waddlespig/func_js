@@ -1,4 +1,4 @@
-- function*
+##### <a id='#function*'>function*</a>
 > 返回一个生成器函数(generator function)，只有next方法被调用时才会去执行具体内容
 
 ````javascript
