@@ -49,7 +49,7 @@ function forOf_object(...args) {
   let new_arr = [].concat(...args);
   let new_obj = {};
   let result_arr = [];
-  for (i of new_arr) {
+  for (let i of new_arr) {
     if (!new_obj[i]) {
       result_arr.push(i);
       new_obj[i] = 1;
