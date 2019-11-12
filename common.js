@@ -82,3 +82,31 @@ function get_diff_twoDimension(standard, ...args) {
     return x[standard] - y[standard];
   })
 }
+
+/*
+* 时间格式化字符串
+* */
+function format_time(accept_obj) {
+  // accept_obj: {
+  //   time: 指定时间; 默认当前系统时间
+  //   format: 格式化形式, date-年月日, time-年月日时分秒; 默认time-年月日时分秒
+  //   timeConnect: 年月日的连接字符串'/'、'-'; 默认'-'
+  // }
+  let date = accept_obj && accept_obj.time ? new Date(accept_obj.time) : new Date();
+  let format = accept_obj && (accept_obj.format === 'date' || accept_obj.format === 'time') ? accept_obj.format : 'time';
+  let timeConnect = accept_obj && (accept_obj.timeConnect === '-' || accept_obj.timeConnect === '/') ? accept_obj.timeConnect : '-';
+  let double_digit = function (v) {
+    return v < 10 ? '0' + v : v;
+  };
+  let year = date.getFullYear();
+  let month = double_digit(date.getMonth() + 1);
+  let day = double_digit(date.getDay());
+  if (format === 'date') {
+    return year + timeConnect + month + timeConnect + day;
+  }
+  let hour = double_digit(date.getHours());
+  let minute = double_digit(date.getMinutes());
+  let second = double_digit(date.getSeconds());
+  return year + timeConnect + month + timeConnect + day + ' ' + hour + ':' + minute + ':' + second;
+}
+
