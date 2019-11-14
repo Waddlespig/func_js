@@ -1,0 +1,19 @@
+{
+  "name": "func_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "common.js",
+  "scripts": {
+    "startNode": "node ./node_simply_server",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Waddlespig/func_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Waddlespig/func_js/issues"
+  },
+  "homepage": "https://github.com/Waddlespig/func_js#readme"
+}

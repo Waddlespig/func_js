@@ -5,14 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="common.js"></script>
 </head>
 <body>
     <script>
-      forOf_object([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa'])
-      set_deWeight([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa'])
-      console.log(get_diff([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa']));
-      console.log(format_time());
+      // forOf_object([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa'])
+      // set_deWeight([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa'])
+      // console.log(get_diff([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa']));
+      // console.log(format_time());
+      console.log(axios);
+      const cancelToken = axios.CancelToken;
+      const source = cancelToken.source();
+      axios.get('/a',{
+        cancelToken: source.token,
+      }).then(function (res) => {
+        console.log(res);
+      }).catch(function (thrown) {
+        if (axios.isCancel(thrown)) {
+          console.log('request is canceled', thrown.message);
+        } else {
+
+        }
+      });
+
     </script>
 </body>
 </html>
