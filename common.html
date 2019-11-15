@@ -14,21 +14,29 @@
       // set_deWeight([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa'])
       // console.log(get_diff([1, 22, 3, 13], ['a', 's', 'd', 1], [13, 444, 'aaa']));
       // console.log(format_time());
-      console.log(axios);
       const cancelToken = axios.CancelToken;
       const source = cancelToken.source();
-      axios.get('/a',{
+      let req_list = [];
+      axios.interceptors.request.use(function(conf) {
+        let post_name = conf.method + '-' + conf.url;
+        if (req_list.indexOf(post_name) !== -1) {
+          console.log(conf)
+          conf.data.cancelToken();
+        } else {
+          req_list.push(post_name);
+          console.log(conf)
+          // delete conf.data.cancelToken;
+        }
+      }, function (err) {
+        console.log(err);
+      });
+      axios.post('http://127.0.0.1:9000/login', {
         cancelToken: source.token,
-      }).then(function (res) => {
+      }).then(function (res) {
         console.log(res);
       }).catch(function (thrown) {
-        if (axios.isCancel(thrown)) {
-          console.log('request is canceled', thrown.message);
-        } else {
-
-        }
+        console.log(thrown);
       });
-
     </script>
 </body>
 </html>
